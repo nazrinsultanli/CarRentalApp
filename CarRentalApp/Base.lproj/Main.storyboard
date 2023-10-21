@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search Page View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CarRentalApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchPageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SearchPageViewController" customModule="CarRentalApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="3160" y="-27"/>
         </scene>
-        <!--View Controller-->
+        <!--Account Page View Controller-->
         <scene sceneID="hb6-9Q-dRc">
             <objects>
-                <viewController id="sjI-Zu-LkH" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountPageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sjI-Zu-LkH" customClass="AccountPageViewController" customModule="CarRentalApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6OS-LK-g4q">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,10 +47,66 @@
                     <view key="view" contentMode="scaleToFill" id="uzC-bS-4Ce">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="eti-Lh-Bmb">
+                                <rect key="frame" x="20" y="325" width="353" height="202"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RIB-oT-bsr">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="iKF-Im-jaE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ay2-sy-gbb">
+                                        <rect key="frame" x="0.0" y="76" width="353" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="4QI-oV-Cab"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhb-N1-xFg">
+                                        <rect key="frame" x="0.0" y="152" width="353" height="50"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="8fG-HI-A3i"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Log In"/>
+                                        <connections>
+                                            <action selector="logInClicked:" destination="VFL-KR-4a0" eventType="touchUpInside" id="yri-h4-FMA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="SQj-bv-H0J">
+                                <rect key="frame" x="106.66666666666669" y="85" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="a4q-Bn-oE1"/>
+                                    <constraint firstAttribute="width" constant="180" id="nq3-8w-UCh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Lzx-6d-CsE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eti-Lh-Bmb" firstAttribute="centerX" secondItem="uzC-bS-4Ce" secondAttribute="centerX" id="2a8-qD-YHe"/>
+                            <constraint firstItem="eti-Lh-Bmb" firstAttribute="centerY" secondItem="uzC-bS-4Ce" secondAttribute="centerY" id="CDM-Ce-FC3"/>
+                            <constraint firstItem="eti-Lh-Bmb" firstAttribute="top" secondItem="SQj-bv-H0J" secondAttribute="bottom" constant="60" id="LUo-wB-R7X"/>
+                            <constraint firstItem="SQj-bv-H0J" firstAttribute="centerX" secondItem="uzC-bS-4Ce" secondAttribute="centerX" id="LnV-c7-1E6"/>
+                            <constraint firstItem="eti-Lh-Bmb" firstAttribute="leading" secondItem="Lzx-6d-CsE" secondAttribute="leading" constant="20" id="Osj-gR-sEF"/>
+                            <constraint firstItem="Lzx-6d-CsE" firstAttribute="trailing" secondItem="eti-Lh-Bmb" secondAttribute="trailing" constant="20" id="wC5-sm-O9m"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fL6-TF-DSm"/>
+                    <connections>
+                        <outlet property="buttonView" destination="rhb-N1-xFg" id="PqM-sr-pXn"/>
+                        <outlet property="emailTextField" destination="RIB-oT-bsr" id="Xla-DC-obr"/>
+                        <outlet property="passwordTextField" destination="Ay2-sy-gbb" id="1Iz-Hy-M3N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ye-ch-Abc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -59,7 +115,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ApN-Jg-MA7">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Iuh-KX-feu" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" automaticallyAdjustsScrollViewInsets="NO" id="Iuh-KX-feu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FEi-86-2sa">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -67,6 +123,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="oYo-uY-M98" kind="relationship" relationship="viewControllers" id="xNl-0u-Q9c"/>
                         <segue destination="qEy-hW-w3y" kind="relationship" relationship="viewControllers" id="9ZM-Wt-xT0"/>
                         <segue destination="tfh-0A-PA9" kind="relationship" relationship="viewControllers" id="21J-yF-pwp"/>
                     </connections>
@@ -93,26 +150,27 @@
             </objects>
             <point key="canvasLocation" x="-924.4274809160305" y="-3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Home Page View Controller-->
         <scene sceneID="D89-zM-202">
             <objects>
-                <viewController id="QgW-9g-o5O" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomePageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QgW-9g-o5O" customClass="HomePageViewController" customModule="CarRentalApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpJ-yq-AFq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="g42-xF-Ljg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="qei-Uf-SfC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYX-gO-vuX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="-771"/>
+            <point key="canvasLocation" x="3160" y="-771"/>
         </scene>
-        <!--Item-->
+        <!--Search-->
         <scene sceneID="8Qi-Jb-nTc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qEy-hW-w3y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="jbW-Le-tsl"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="searchTab" selectedImage="searchTab" id="jbW-Le-tsl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TD7-Ud-sW6">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -127,11 +185,11 @@
             </objects>
             <point key="canvasLocation" x="2233" y="-27"/>
         </scene>
-        <!--Item-->
+        <!--Account-->
         <scene sceneID="UGF-vi-Cxh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tfh-0A-PA9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="1So-fD-x1U"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="accuntTab" selectedImage="accuntTab" id="1So-fD-x1U"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dL8-vX-t02">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -146,8 +204,31 @@
             </objects>
             <point key="canvasLocation" x="2259" y="713"/>
         </scene>
+        <!--Vehicles-->
+        <scene sceneID="L7V-8r-kEo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oYo-uY-M98" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Vehicles" image="vehiclesTab" selectedImage="vehiclesTab" id="lGE-AR-tgX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tos-KR-NgH">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QgW-9g-o5O" kind="relationship" relationship="rootViewController" id="gAA-WE-ATU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uu3-1r-dtr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2259" y="-771"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="accuntTab" width="29" height="28"/>
+        <image name="logo" width="122" height="146"/>
+        <image name="searchTab" width="28" height="28"/>
+        <image name="vehiclesTab" width="28" height="28"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

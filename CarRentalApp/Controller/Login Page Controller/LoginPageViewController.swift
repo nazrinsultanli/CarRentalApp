@@ -8,22 +8,43 @@
 import UIKit
 
 class LoginPageViewController: UIViewController {
-
+    @IBOutlet weak var buttonView: UIButton!
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setupUI()
+    }
+    
+    
+    private func setupUI(){
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "launchBackground")!)
+        
+        emailTextField.layer.cornerRadius = 25
+        emailTextField.layer.borderWidth = 1
+        emailTextField.layer.borderColor = UIColor.white.cgColor
+        
+        passwordTextField.layer.cornerRadius = 25
+        passwordTextField.layer.borderWidth = 1
+        passwordTextField.layer.borderColor = UIColor.white.cgColor
+        
+        buttonView.layer.cornerRadius = 25
+        buttonView.layer.borderWidth = 1
+        //buttonView.layer.borderColor = UIColor.black.cgColor
+        
+        emailTextField.layer.masksToBounds = true
+        passwordTextField.layer.masksToBounds = true
+        buttonView.layer.masksToBounds = true
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func logInClicked(_ sender: Any) {
+        let homeController = storyboard?.instantiateViewController(identifier: "tabBar") as! UITabBarController
+        navigationController?.show(homeController, sender: nil)
     }
-    */
+    
 
 }
