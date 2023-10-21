@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100369882AE3CA2E009C01EE /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100369872AE3CA2E009C01EE /* SearchPageViewController.swift */; };
+		1003698A2AE3CA3E009C01EE /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100369892AE3CA3E009C01EE /* HomePageViewController.swift */; };
+		1003698C2AE3CA52009C01EE /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003698B2AE3CA52009C01EE /* LoginPageViewController.swift */; };
 		1029F86E2AE3C1B60004A42F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1029F86D2AE3C1B60004A42F /* Realm */; };
 		1029F8702AE3C1B60004A42F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1029F86F2AE3C1B60004A42F /* RealmSwift */; };
 		FE9D309C2AE3A6040004F029 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D309B2AE3A6040004F029 /* AppDelegate.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		100369872AE3CA2E009C01EE /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
+		100369892AE3CA3E009C01EE /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		1003698B2AE3CA52009C01EE /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		FE9D30982AE3A6040004F029 /* CarRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9D309B2AE3A6040004F029 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9D309D2AE3A6040004F029 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +74,7 @@
 		1029F8742AE3C1FE0004A42F /* Login Page Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1003698B2AE3CA52009C01EE /* LoginPageViewController.swift */,
 			);
 			path = "Login Page Controller";
 			sourceTree = "<group>";
@@ -75,6 +82,7 @@
 		1029F8752AE3C23A0004A42F /* Home Page Controller */ = {
 			isa = PBXGroup;
 			children = (
+				100369892AE3CA3E009C01EE /* HomePageViewController.swift */,
 			);
 			path = "Home Page Controller";
 			sourceTree = "<group>";
@@ -82,6 +90,7 @@
 		1029F8762AE3C2480004A42F /* Search Page Controller */ = {
 			isa = PBXGroup;
 			children = (
+				100369872AE3CA2E009C01EE /* SearchPageViewController.swift */,
 			);
 			path = "Search Page Controller";
 			sourceTree = "<group>";
@@ -200,6 +209,9 @@
 				FE9D309C2AE3A6040004F029 /* AppDelegate.swift in Sources */,
 				FE9D30A62AE3A6040004F029 /* CarRentalApp.xcdatamodeld in Sources */,
 				FE9D309E2AE3A6040004F029 /* SceneDelegate.swift in Sources */,
+				1003698C2AE3CA52009C01EE /* LoginPageViewController.swift in Sources */,
+				1003698A2AE3CA3E009C01EE /* HomePageViewController.swift in Sources */,
+				100369882AE3CA2E009C01EE /* SearchPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
