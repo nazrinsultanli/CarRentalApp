@@ -8,14 +8,18 @@
 import UIKit
 
 class TypeVehicleCollCell: UICollectionViewCell {
+    @IBOutlet weak var backgrounColorSelected: UIView!
     @IBOutlet weak var vehicleImage: UIImageView!
     
     @IBOutlet weak var countVehicles: UILabel!
     @IBOutlet weak var typeVehicle: UILabel!
     
-    func setTypeVehicleCollCell(vehicleImageName: String,typeVehicleName: String, countVehiclesNumber: String  ) {
+    
+    func setTypeVehicleCollCell(vehicleImageName: String,typeVehicleName: String, countVehiclesNumber: String) {
         vehicleImage.image = UIImage(named: vehicleImageName)
         typeVehicle.text = typeVehicleName
         countVehicles.text = countVehiclesNumber
+        backgrounColorSelected.tintColor = UIColor.blue
+        
     }
 }

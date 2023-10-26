@@ -14,17 +14,37 @@ enum typeVehicles: String,  CaseIterable{
     case suv = "SUV"
 }
 
+
 //switch(HomeItems.allCases[indexPath.row]) {case .standar:}
 class HomePageViewController: UIViewController {
     var carData = [Vehicles]()
     let myRealm = try! Realm()
-
+    
     @IBOutlet weak var typesOfVehiclesCollectionView: UICollectionView!
     
     @IBOutlet weak var vehiclesListCollectionView: UICollectionView!
+    
     let typeVehicle = ["Standard", "Prestige", "SUV"]
     let imagesofVehicles = ["car_1", "car_2", "car_3"]
     var numVehicles = [Int]()
+    var filteredData: [Vehicles] = []
+    
+    var standartArray : [Vehicles] = []
+    var prestigeArray: [Vehicles] = []
+    var suvArray: [Vehicles] = []
+    
+    var selectedIndexPath: IndexPath?
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            // Select the first item in the first collection view
+            let firstIndexPath = IndexPath(item: 0, section: 0)
+        typesOfVehiclesCollectionView.selectItem(at: firstIndexPath, animated: false, scrollPosition: .top)
+            collectionView(typesOfVehiclesCollectionView, didSelectItemAt: firstIndexPath)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+
+        }
+    
     
     
     override func viewDidLoad() {
@@ -33,31 +53,50 @@ class HomePageViewController: UIViewController {
             print(url)
         }
         fetch()
+        numVehicles = numberOfVehicles()
         
-       
+        typesOfVehiclesCollectionView.backgroundColor = UIColor.clear
+
+        
+        
         typesOfVehiclesCollectionView.delegate = self
         typesOfVehiclesCollectionView.dataSource = self
         vehiclesListCollectionView.delegate = self
         vehiclesListCollectionView.dataSource = self
         
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        tabBarController?.tabBar.barTintColor = UIColor.white
         
+        view.backgroundColor = UIColor.systemGray6
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    func numberOfVehicles() -> [Int] {
         var countStandart = 0
         var countPrestige = 0
         var countSUV = 0
         for i in 0..<carData.count{
             if carData[i].rentCost < 201{
                 countStandart += 1
+                standartArray.append((carData[i]))
             }
             else if carData[i].rentCost > 201 && carData[i].rentCost < 400 {
                 countPrestige += 1
+                prestigeArray.append((carData[i]))
             }
             else if carData[i].rentCost > 401 {
                 countSUV += 1
+                suvArray.append((carData[i]))
             }
         }
-        numVehicles = [countStandart,countPrestige,countSUV]
         
-
+        return [countStandart,countPrestige,countSUV]
     }
     
     func fetch(){
@@ -66,29 +105,32 @@ class HomePageViewController: UIViewController {
         carData.append(contentsOf: data)
         //myTableView.reloadData()
     }
-
+    
 }
 
 extension HomePageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-
-
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.typesOfVehiclesCollectionView {
             return typeVehicles.allCases.count
         }
-
-        return carData.count
+        if collectionView == self.vehiclesListCollectionView{
+            return filteredData.count
+        }
+        
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         if collectionView == self.vehiclesListCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VehicleListCollCell", for: indexPath as IndexPath) as! VehicleListCollCell
-            cell.setVehicleListCollCell(liter: carData[indexPath.item].brandName,
-                                        cost: String(carData[indexPath.item].rentCost),
-                                        engine: carData[indexPath.item].motor,
-                                        model: carData[indexPath.item].modelName,
-                                        brand: carData[indexPath.item].brandName,
-                                        image: carData[indexPath.item].imageName)
+            cell.setVehicleListCollCell(liter: filteredData[indexPath.item].brandName,
+                                        cost: String(filteredData[indexPath.item].rentCost),
+                                        engine: filteredData[indexPath.item].motor,
+                                        model: filteredData[indexPath.item].modelName,
+                                        brand: filteredData[indexPath.item].brandName,
+                                        image: filteredData[indexPath.item].imageName)
             return cell
         }
         
@@ -97,9 +139,48 @@ extension HomePageViewController: UICollectionViewDelegate, UICollectionViewData
             cell.setTypeVehicleCollCell(vehicleImageName: imagesofVehicles[indexPath.item], typeVehicleName: typeVehicle[indexPath.item], countVehiclesNumber: String(numVehicles[indexPath.item]))
             return cell
         }
-
+        
     }
     
- 
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.typesOfVehiclesCollectionView {
+            
+     
+            let cell = collectionView.cellForItem(at: indexPath) as? TypeVehicleCollCell
+                    
+                    // Reset background color of all cells to clear
+            if let selectedIndexPath = selectedIndexPath,
+                           let previousCell = collectionView.cellForItem(at: selectedIndexPath) as? TypeVehicleCollCell {
+                            previousCell.backgrounColorSelected.backgroundColor = UIColor.white
+                previousCell.countVehicles.textColor = UIColor.black
+                previousCell.typeVehicle.textColor = UIColor.black
+                
+                
+                        }
+                    
+                    // Set the background color of the selected cell to blue
+            cell?.backgrounColorSelected.backgroundColor = UIColor.blue
+            cell?.countVehicles.textColor = UIColor.white
+            cell?.typeVehicle.textColor = UIColor.white
+            selectedIndexPath = indexPath
+            
+            
+            switch (indexPath.item) {
+            case 0:
+                filteredData = standartArray
+            case 1:
+                filteredData = prestigeArray
+            case 2:
+                filteredData = suvArray
+            default:
+                print("")
+                break
+            }
+            vehiclesListCollectionView.reloadData()
+            
+            
+        }
+    }
     
 }

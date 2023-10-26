@@ -161,7 +161,6 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lEJ-T3-AnM">
                                 <rect key="frame" x="30" y="213" width="333" height="150"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="uCh-SX-Iyb"/>
                                 </constraints>
@@ -169,13 +168,13 @@
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="2" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TypeVehicleCollCell" id="jvT-6d-6Nd" customClass="TypeVehicleCollCell" customModule="CarRentalApp" customModuleProvider="target">
+                                    <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TypeVehicleCollCell" id="jvT-6d-6Nd" customClass="TypeVehicleCollCell" customModule="CarRentalApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="11" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hxn-1h-ArC">
+                                        <collectionViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hxn-1h-ArC">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -191,7 +190,7 @@
                                                                 <constraint firstAttribute="height" constant="20" id="CVV-Mj-Lmr"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHS-pK-Mrq">
@@ -200,11 +199,11 @@
                                                                 <constraint firstAttribute="height" constant="20" id="7Bp-G0-S0i"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="linkColor"/>
+                                                    <color key="backgroundColor" red="0.83514030610000001" green="0.82568027209999995" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="wHS-pK-Mrq" secondAttribute="bottom" id="6E6-Ib-fWJ"/>
                                                         <constraint firstItem="dyo-4Z-skW" firstAttribute="leading" secondItem="Cr0-GI-qda" secondAttribute="leading" id="DAo-ET-r0w"/>
@@ -227,6 +226,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
+                                            <outlet property="backgrounColorSelected" destination="Cr0-GI-qda" id="myg-R9-iOu"/>
                                             <outlet property="countVehicles" destination="wHS-pK-Mrq" id="aXM-9g-XcH"/>
                                             <outlet property="typeVehicle" destination="dyo-4Z-skW" id="icV-eW-7lJ"/>
                                             <outlet property="vehicleImage" destination="yez-v5-gfv" id="XB7-Tj-Ngs"/>
@@ -472,9 +472,6 @@
         <image name="logo" width="122" height="146"/>
         <image name="searchTab" width="28" height="28"/>
         <image name="vehiclesTab" width="28" height="28"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
