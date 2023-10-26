@@ -17,6 +17,7 @@ enum typeVehicles: String,  CaseIterable{
 //switch(HomeItems.allCases[indexPath.row]) {case .standar:}
 class HomePageViewController: UIViewController {
     var carData = [Vehicles]()
+    @IBOutlet weak var myTableView: UITableView!
     let myRealm = try! Realm()
 
     @IBOutlet weak var typesOfVehiclesCollectionView: UICollectionView!
@@ -25,7 +26,7 @@ class HomePageViewController: UIViewController {
     let typeVehicle = ["Standard", "Prestige", "SUV"]
     let imagesofVehicles = ["car_1", "car_2", "car_3"]
     var numVehicles = [Int]()
-    
+    var selectedItem = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,26 +34,34 @@ class HomePageViewController: UIViewController {
             print(url)
         }
         fetch()
+        myTableView.delegate = self
+        myTableView.dataSource = self
+        myTableView.register(UINib(nibName: "TypeVehicleTableViewCell" , bundle: .main), forCellReuseIdentifier: "tableCell")
         
        
-        typesOfVehiclesCollectionView.delegate = self
-        typesOfVehiclesCollectionView.dataSource = self
-        vehiclesListCollectionView.delegate = self
-        vehiclesListCollectionView.dataSource = self
+//        typesOfVehiclesCollectionView.delegate = self
+//        typesOfVehiclesCollectionView.dataSource = self
+//        vehiclesListCollectionView.delegate = self
+//        vehiclesListCollectionView.dataSource = self
         
-        
+        var standartArray = [String]()
+        var prestigeArray = [String]()
+        var suvArray = [String]()
         var countStandart = 0
         var countPrestige = 0
         var countSUV = 0
         for i in 0..<carData.count{
             if carData[i].rentCost < 201{
                 countStandart += 1
+                standartArray.append(String(carData[i].rentCost))
             }
             else if carData[i].rentCost > 201 && carData[i].rentCost < 400 {
                 countPrestige += 1
+                prestigeArray.append(String(carData[i].rentCost))
             }
             else if carData[i].rentCost > 401 {
                 countSUV += 1
+                suvArray.append(String(carData[i].rentCost))
             }
         }
         numVehicles = [countStandart,countPrestige,countSUV]
@@ -69,7 +78,7 @@ class HomePageViewController: UIViewController {
 
 }
 
-extension HomePageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+/*extension HomePageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,6 +109,53 @@ extension HomePageViewController: UICollectionViewDelegate, UICollectionViewData
 
     }
     
- 
+}
+*/
+
+
+extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+        else if section == 1 {
+            return 1
+        }
+        else {
+            return 5
+        }
+    }
+    
+   
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            return UITableViewCell()
+        }
+        else if indexPath.section == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TypeVehicleTableViewCell
+            cell.myCollectionView.backgroundColor = .red
+            return cell
+        }
+        else{
+            return UITableViewCell()
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 40
+        }
+        else if indexPath.section == 1{
+            return 130
+        }
+        else{
+            return 40
+        }
+    }
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 class TypeVehicleCollCell: UICollectionViewCell {
+    
+    
     @IBOutlet weak var vehicleImage: UIImageView!
     
     @IBOutlet weak var countVehicles: UILabel!
