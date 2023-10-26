@@ -241,6 +241,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <connections>
+                                    <action selector="searchButtonClicked:" destination="QgW-9g-o5O" eventType="editingDidEnd" id="gZY-ty-9EN"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Vehicles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uV8-Fq-2Xs">
                                 <rect key="frame" x="40" y="393" width="313" height="26"/>
@@ -401,6 +404,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Car Rental" largeTitleDisplayMode="always" id="qei-Uf-SfC"/>
                     <connections>
+                        <outlet property="searchButton" destination="R6N-eN-1kz" id="UdX-jb-d8g"/>
                         <outlet property="typesOfVehiclesCollectionView" destination="lEJ-T3-AnM" id="K8e-nA-OSw"/>
                         <outlet property="vehiclesListCollectionView" destination="s1d-fT-Bda" id="7EB-J9-W6n"/>
                     </connections>

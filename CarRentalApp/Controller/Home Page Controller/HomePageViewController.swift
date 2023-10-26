@@ -17,6 +17,7 @@ enum typeVehicles: String,  CaseIterable{
 
 //switch(HomeItems.allCases[indexPath.row]) {case .standar:}
 class HomePageViewController: UIViewController {
+    @IBOutlet weak var searchButton: UITextField!
     var carData = [Vehicles]()
     let myRealm = try! Realm()
     
@@ -33,7 +34,7 @@ class HomePageViewController: UIViewController {
     var prestigeArray: [Vehicles] = []
     var suvArray: [Vehicles] = []
     
-    var selectedIndexPath: IndexPath?
+    var selectedIndexPath: IndexPath? // type uzerinde didselect
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
@@ -54,7 +55,7 @@ class HomePageViewController: UIViewController {
         }
         fetch()
         numVehicles = numberOfVehicles()
-        
+        searchButton.delegate = self
         typesOfVehiclesCollectionView.backgroundColor = UIColor.clear
 
         
@@ -68,11 +69,6 @@ class HomePageViewController: UIViewController {
         tabBarController?.tabBar.barTintColor = UIColor.white
         
         view.backgroundColor = UIColor.systemGray6
-        
-        
-        
-        
-        
         
         
     }
@@ -106,6 +102,15 @@ class HomePageViewController: UIViewController {
         //myTableView.reloadData()
     }
     
+    
+    @IBAction func searchButtonClicked(_ sender: Any) {
+        guard let searchText = searchButton.text?.lowercased() else{
+            return
+        }
+        filteredData = carData.filter { $0.brandName.lowercased().contains(searchText)
+        }
+        vehiclesListCollectionView.reloadData()
+    }
 }
 
 extension HomePageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -184,3 +189,12 @@ extension HomePageViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
 }
+
+
+extension HomePageViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        searchButtonClicked(textField)
+        return true
+    }
+}
+
