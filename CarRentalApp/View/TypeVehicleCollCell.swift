@@ -20,6 +20,8 @@ class TypeVehicleCollCell: UICollectionViewCell {
         typeVehicle.text = typeVehicleName
         countVehicles.text = countVehiclesNumber
         backgrounColorSelected.tintColor = UIColor.blue
+        backgrounColorSelected.layer.cornerRadius = backgrounColorSelected.frame.size.height/4
         
+        //searchButton.layer.borderWidth = 0.5
     }
 }

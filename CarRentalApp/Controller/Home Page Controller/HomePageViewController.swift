@@ -34,6 +34,10 @@ class HomePageViewController: UIViewController {
     var prestigeArray: [Vehicles] = []
     var suvArray: [Vehicles] = []
     
+    
+    
+    
+    
     var selectedIndexPath: IndexPath? // type uzerinde didselect
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,8 +62,8 @@ class HomePageViewController: UIViewController {
         searchButton.delegate = self
         typesOfVehiclesCollectionView.backgroundColor = UIColor.clear
 
-        
-        
+        vehiclesListCollectionView.register(UINib(nibName: "VehicleListCollCellXIB" , bundle: .main), forCellWithReuseIdentifier: "VehicleListCell")
+    
         typesOfVehiclesCollectionView.delegate = self
         typesOfVehiclesCollectionView.dataSource = self
         vehiclesListCollectionView.delegate = self
@@ -67,8 +71,14 @@ class HomePageViewController: UIViewController {
         
         navigationController?.navigationBar.barTintColor = UIColor.white
         tabBarController?.tabBar.barTintColor = UIColor.white
+        vehiclesListCollectionView.layer.cornerRadius = vehiclesListCollectionView.frame.size.height/8
+
         
         view.backgroundColor = UIColor.systemGray6
+        
+        searchButton.layer.cornerRadius = searchButton.frame.size.height/2
+        searchButton.layer.masksToBounds = true
+        //searchButton.layer.borderWidth = 0.5
         
         
     }
@@ -129,7 +139,7 @@ extension HomePageViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         if collectionView == self.vehiclesListCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VehicleListCollCell", for: indexPath as IndexPath) as! VehicleListCollCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VehicleListCell", for: indexPath as IndexPath) as! VehicleListCollCellXIB
             cell.setVehicleListCollCell(liter: filteredData[indexPath.item].brandName,
                                         cost: String(filteredData[indexPath.item].rentCost),
                                         engine: filteredData[indexPath.item].motor,

@@ -15,8 +15,12 @@ class LoginPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaults.standard.setValue(true, forKey: "LoggedIn")
+        
+       
         setupUI()
     }
+    
     
     
     private func setupUI(){
@@ -43,6 +47,14 @@ class LoginPageViewController: UIViewController {
 
     @IBAction func logInClicked(_ sender: Any) {
         let homeController = storyboard?.instantiateViewController(identifier: "tabBar") as! UITabBarController
+        
+        if emailTextField.text == "1"  && passwordTextField.text == "1"{
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+                sceneDelegate.setMainRootViewController(windowScene: windowScene)
+            }
+        }
+        
         navigationController?.show(homeController, sender: nil)
     }
     
