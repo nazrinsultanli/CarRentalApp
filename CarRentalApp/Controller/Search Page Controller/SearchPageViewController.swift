@@ -10,76 +10,56 @@ import RealmSwift
 
 class SearchPageViewController: UIViewController {
     
-    @IBOutlet weak var myCollectionView: UICollectionView!
+    var carData = VehicleGenerator().carData
+
     
+    @IBOutlet weak var collectionViewVehicles: UICollectionView!
     @IBOutlet weak var searchButton: UITextField!
-    var carData = [Vehicles]()
-    let myRealm = try! Realm()
-    var filteredData: [Vehicles] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetch()
-        myCollectionView.reloadData()
-        print("Number of items in carData: \(carData.count)")
+        collectionViewVehicles.dataSource = self
+        collectionViewVehicles.delegate = self
+        collectionViewVehicles.register(UINib(nibName: "\(VehicleListCollCellXIB.self)", bundle: nil), forCellWithReuseIdentifier: "VehicleListCollCellXIB")
+    
         
-        myCollectionView.register(UINib(nibName: "VehicleListCollCellXIB" , bundle: .main), forCellWithReuseIdentifier: "VehicleListCell")
-        myCollectionView.backgroundColor = UIColor.clear
-        myCollectionView.layer.cornerRadius = myCollectionView.frame.size.height/4
-        //        filteredData = carData
+        navigationController?.navigationBar.barTintColor = UIColor.white
+           tabBarController?.tabBar.barTintColor = UIColor.white
+           view.backgroundColor = UIColor.systemGray6
+    
     }
-    
-    
-    
-    //    @IBAction func searchButtonClicked(_ sender: Any) {
-    //        guard let searchText = searchButton.text?.lowercased() else{
-    //            return
-    //        }
-    //        filteredData = carData.filter { $0.brandName.lowercased().contains(searchText)
-    //        }
-    //        myCollectionView.reloadData()
-    //    }
-    
-    func fetch(){
-        let data = myRealm.objects(Vehicles.self)
-        carData.removeAll()
-        carData.append(contentsOf: data)
-        //myTableView.reloadData()
+  
+    @IBAction func searchButtonClicked(_ sender: Any) {
     }
-    
     
 }
 
 extension SearchPageViewController: UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //print("Number of Items: \(filteredData.count)")
-        //return filteredData.count
+
         return carData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("Filtered Data Count: \(filteredData.count)")
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VehicleListCell", for: indexPath as IndexPath) as! VehicleListCollCellXIB
-//        cell.setVehicleListCollCell(liter: filteredData[indexPath.item].brandName,
-//                                    cost: String(filteredData[indexPath.item].rentCost),
-//                                    engine: filteredData[indexPath.item].motor,
-//                                    model: filteredData[indexPath.item].modelName,
-//                                    brand: filteredData[indexPath.item].brandName,
-//                                    image: filteredData[indexPath.item].imageName)
         
-     
-            // Use carData instead of filteredData to populate the cell
-            cell.setVehicleListCollCell(liter: carData[indexPath.item].brandName,
-                                        cost: String(carData[indexPath.item].rentCost),
-                                        engine: carData[indexPath.item].motor,
-                                        model: carData[indexPath.item].modelName,
-                                        brand: carData[indexPath.item].brandName,
-                                        image: carData[indexPath.item].imageName)
-      
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(VehicleListCollCellXIB.self)", for: indexPath) as! VehicleListCollCellXIB
+        
+       
+        cell.setVehicleListCollCell(liter: carData[indexPath.item].brandName,
+                                    cost: String(carData[indexPath.item].rentCost),
+                                    engine: carData[indexPath.item].motor,
+                                    model: carData[indexPath.item].modelName,
+                                    brand: carData[indexPath.item].brandName,
+                                    image: carData[indexPath.item].imageName)
+        cell.layer.cornerRadius = 30
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: collectionView.frame.width * 0.855, height: 355)
+    }
     
+
 }
 
 //extension SearchPageViewController: UITextFieldDelegate {

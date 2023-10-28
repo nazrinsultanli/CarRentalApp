@@ -22,9 +22,15 @@ class TypeVehicleHeaderCell: UICollectionViewCell {
         self.carImage.image = UIImage(named: carImage)
     }
     
-    func selectCell(type:String,count:Int){
+    func selectedCell(){
         self.type.textColor = UIColor.white
         self.backColor.backgroundColor = UIColor.blue
         self.count.textColor = UIColor.white
+    }
+    
+    func unSelectedCell(){
+        self.type.textColor = UIColor.black
+        self.backColor.backgroundColor = UIColor.white
+        self.count.textColor = UIColor.gray
     }
 }

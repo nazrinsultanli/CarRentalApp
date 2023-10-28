@@ -94,6 +94,8 @@
 				102AD5AD2AED7EA600D400F2 /* kohne */,
 				102AD5AB2AED6AF300D400F2 /* TypeVehicleHeaderReusableView.swift */,
 				102AD5AE2AED847C00D400F2 /* TypeVehicleHeaderCell.swift */,
+				10E7523A2AEB08EC00B3B398 /* VehicleListCollCellXIB.swift */,
+				10E7523B2AEB08EC00B3B398 /* VehicleListCollCellXIB.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,8 +140,6 @@
 			children = (
 				104503562AE850C600E42505 /* TypeVehicleCollCell.swift */,
 				104503582AE8573800E42505 /* VehicleListCollCell.swift */,
-				10E7523A2AEB08EC00B3B398 /* VehicleListCollCellXIB.swift */,
-				10E7523B2AEB08EC00B3B398 /* VehicleListCollCellXIB.xib */,
 			);
 			path = kohne;
 			sourceTree = "<group>";

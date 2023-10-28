@@ -12,6 +12,12 @@ class TypeVehicleHeaderReusableView: UICollectionReusableView {
     @IBOutlet weak var collectionViewm: UICollectionView!
     
     let typesOfVehicles = TypeVehiclesGenerator().types
+    
+    var selectedIndexforHome: ((Int) -> Void)?
+    
+    var selectedIndexPath: IndexPath?
+    
+    
 }
 
 extension TypeVehicleHeaderReusableView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -27,6 +33,26 @@ extension TypeVehicleHeaderReusableView: UICollectionViewDelegate, UICollectionV
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: 150, height: collectionViewm.frame.height)
+    }
+    
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexforHome?(tag)
+        
+            let cell = collectionViewm.cellForItem(at: indexPath) as? TypeVehicleHeaderCell
+
+                    // Reset background color of all cells to clear
+            if let selectedIndexPath = selectedIndexPath,
+                           let previousCell = collectionViewm.cellForItem(at: selectedIndexPath) as? TypeVehicleHeaderCell {
+                previousCell.selectedCell()
+                        }
+        cell?.unSelectedCell()
+            selectedIndexPath = indexPath
+
+        collectionViewm.reloadData()
+
     }
     
 }

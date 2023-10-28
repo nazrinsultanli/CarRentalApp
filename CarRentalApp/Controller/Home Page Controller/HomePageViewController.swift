@@ -6,28 +6,18 @@
 //
 
 import UIKit
-import RealmSwift
-
-enum typeVehicles: String,  CaseIterable{
-    case standard = "Standard"
-    case prestige = "Prestige"
-    case suv = "SUV"
-}
 
 
-//switch(HomeItems.allCases[indexPath.row]) {case .standar:}
+
 class HomePageViewController: UIViewController {
+    
     @IBOutlet weak var searchButton: UITextField!
-    var carData = [Vehicles]()
-    let myRealm = try! Realm()
+    var carData = VehicleGenerator().carData
+    @IBOutlet weak var collectionViewVehicles: UICollectionView!
     
-    @IBOutlet weak var typesOfVehiclesCollectionView: UICollectionView!
+    var selectedIndexforHome: ((Int) -> Void)?
+    var selectedFromType: Int = 0
     
-    @IBOutlet weak var vehiclesListCollectionView: UICollectionView!
-    
-    let typeVehicle = ["Standard", "Prestige", "SUV"]
-    let imagesofVehicles = ["car_1", "car_2", "car_3"]
-    var numVehicles = [Int]()
     var filteredData: [Vehicles] = []
     
     var standartArray : [Vehicles] = []
@@ -39,80 +29,37 @@ class HomePageViewController: UIViewController {
 //                                           forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "dsff")
     
     
-    var selectedIndexPath: IndexPath? // type uzerinde didselect
     
 //    override func viewWillAppear(_ animated: Bool) {
 //            super.viewWillAppear(animated)
 //     super.viewWillAppear(animated)       // Select the first item in the first collection view
 //            let firstIndexPath = IndexPath(item: 0, section: 0)
-//        typesOfVehiclesCollectionView.selectItem(at: firstIndexPath, animated: false, scrollPosition: .top)
-//            collectionView(typesOfVehiclesCollectionView, didSelectItemAt: firstIndexPath)
+//        collectionViewVehicles.selectItem(at: firstIndexPath, animated: false, scrollPosition: .top)
+//            collectionView(collectionViewVehicles, didSelectItemAt: firstIndexPath)
 //        navigationController?.setNavigationBarHidden(false, animated: true)
 //
 //        }
-//    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let url = myRealm.configuration.fileURL{
-            print(url)
-        }
-        fetch()
-        numVehicles = numberOfVehicles()
-//        searchButton.delegate = self
-//        typesOfVehiclesCollectionView.backgroundColor = UIColor.clear
-//
-//        vehiclesListCollectionView.register(UINib(nibName: "VehicleListCollCellXIB" , bundle: .main), forCellWithReuseIdentifier: "VehicleListCell")
-//    
-//        typesOfVehiclesCollectionView.delegate = self
-//        typesOfVehiclesCollectionView.dataSource = self
-//        vehiclesListCollectionView.delegate = self
-//        vehiclesListCollectionView.dataSource = self
-//        
-        navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        filteredCarData()
+        collectionViewVehicles.register(UINib(nibName: "\(VehicleListCollCellXIB.self)", bundle: nil), forCellWithReuseIdentifier: "VehicleListCollCellXIB")
+    
+       
+        
+        searchButton.delegate = self
+
+     navigationController?.navigationBar.barTintColor = UIColor.white
         tabBarController?.tabBar.barTintColor = UIColor.white
-//        vehiclesListCollectionView.layer.cornerRadius = vehiclesListCollectionView.frame.size.height/8
-//
-//        
         view.backgroundColor = UIColor.systemGray6
-//        
-//        searchButton.layer.cornerRadius = searchButton.frame.size.height/2
-//        searchButton.layer.masksToBounds = false
-//        searchButton.layer.borderWidth = 0
-        
+
         
     }
-    
-    func numberOfVehicles() -> [Int] {
-        var countStandart = 0
-        var countPrestige = 0
-        var countSUV = 0
-        for i in 0..<carData.count{
-            if carData[i].rentCost < 201{
-                countStandart += 1
-                standartArray.append((carData[i]))
-            }
-            else if carData[i].rentCost > 201 && carData[i].rentCost < 400 {
-                countPrestige += 1
-                prestigeArray.append((carData[i]))
-            }
-            else if carData[i].rentCost > 401 {
-                countSUV += 1
-                suvArray.append((carData[i]))
-            }
-        }
-        
-        return [countStandart,countPrestige,countSUV]
-    }
-    
-    func fetch(){
-//        let data = myRealm.objects(Vehicles.self)
-//        carData.removeAll()
-//        carData.append(contentsOf: data)
-//        vehiclesListCollectionView.reloadData()
-    }
-    
+
+ 
     
     @IBAction func searchButtonClicked(_ sender: Any) {
         guard let searchText = searchButton.text?.lowercased() else{
@@ -120,46 +67,61 @@ class HomePageViewController: UIViewController {
         }
         filteredData = carData.filter { $0.brandName.lowercased().contains(searchText)
         }
-        //vehiclesListCollectionView.reloadData()
+        collectionViewVehicles.reloadData()
     }
+    
+    func filteredCarData() {
+        if carData.contains(where: { $0.rentCost <= 200 }) {
+            standartArray = carData
+        } else if (carData.contains(where: { $0.rentCost > 200 && $0.rentCost <= 400 })) {
+             prestigeArray = carData
+        }
+        else if (carData.contains(where: { $0.rentCost > 400 && $0.rentCost > 200 })) {
+             suvArray = carData
+        }
+      
+     
+        
+        selectedIndexforHome = { i in
+            self.selectedFromType = i
+            }
+        switch selectedFromType {
+        case 0:
+            filteredData = standartArray
+        case 1:
+            filteredData = prestigeArray
+        case 2:
+            filteredData = prestigeArray
+        default:
+            filteredData = []
+        }
+    }
+    
 }
 
 extension HomePageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if collectionView == self.typesOfVehiclesCollectionView {
-//            return typeVehicles.allCases.count
-//        }
-//        if collectionView == self.vehiclesListCollectionView{
-//            return filteredData.count
-//        }
         
-        return 10
+        return filteredData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(VehicleListCollCellXIB.self)", for: indexPath) as! VehicleListCollCellXIB
         
-//        if collectionView == self.vehiclesListCollectionView {
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VehicleListCell", for: indexPath as IndexPath) as! VehicleListCollCellXIB
-//            cell.setVehicleListCollCell(liter: filteredData[indexPath.item].brandName,
-//                                        cost: String(filteredData[indexPath.item].rentCost),
-//                                        engine: filteredData[indexPath.item].motor,
-//                                        model: filteredData[indexPath.item].modelName,
-//                                        brand: filteredData[indexPath.item].brandName,
-//                                        image: filteredData[indexPath.item].imageName)
-//            return cell
-//        }
-        
-//        else{
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TypeVehicleCollCell", for: indexPath as IndexPath) as! TypeVehicleCollCell
-//            cell.setTypeVehicleCollCell(vehicleImageName: imagesofVehicles[indexPath.item], typeVehicleName: typeVehicle[indexPath.item], countVehiclesNumber: String(numVehicles[indexPath.item]))
-//            return cell
-//        }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "vehicleCell", for: indexPath)
-        cell.layer.cornerRadius = 35
+       
+        cell.setVehicleListCollCell(liter: filteredData[indexPath.item].brandName,
+                                    cost: String(filteredData[indexPath.item].rentCost),
+                                    engine: filteredData[indexPath.item].motor,
+                                    model: filteredData[indexPath.item].modelName,
+                                    brand: filteredData[indexPath.item].brandName,
+                                    image: filteredData[indexPath.item].imageName)
+        cell.layer.cornerRadius = 30
         return cell
+        
+ 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -167,48 +129,9 @@ extension HomePageViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if collectionView == self.typesOfVehiclesCollectionView {
-//            
-//     
-//            let cell = collectionView.cellForItem(at: indexPath) as? TypeVehicleCollCell
-//                    
-//                    // Reset background color of all cells to clear
-//            if let selectedIndexPath = selectedIndexPath,
-//                           let previousCell = collectionView.cellForItem(at: selectedIndexPath) as? TypeVehicleCollCell {
-//                            previousCell.backgrounColorSelected.backgroundColor = UIColor.white
-//                previousCell.countVehicles.textColor = UIColor.black
-//                previousCell.typeVehicle.textColor = UIColor.black
-//                
-//                
-//                        }
-//                    
-//                    // Set the background color of the selected cell to blue
-//            cell?.backgrounColorSelected.backgroundColor = UIColor.blue
-//            cell?.countVehicles.textColor = UIColor.white
-//            cell?.typeVehicle.textColor = UIColor.white
-//            selectedIndexPath = indexPath
-//            
-//            
-//            switch (indexPath.item) {
-//            case 0:
-//                filteredData = standartArray
-//            case 1:
-//                filteredData = prestigeArray
-//            case 2:
-//                filteredData = suvArray
-//            default:
-//                print("")
-//                break
-//            }
-//            vehiclesListCollectionView.reloadData()
-//            
-//            
-//        }
-    }
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(TypeVehicleHeaderReusableView.self)", for: indexPath) as! TypeVehicleHeaderReusableView
-        //header.backgroundColor = .brown
         return header
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -220,6 +143,7 @@ extension HomePageViewController: UICollectionViewDelegate, UICollectionViewData
 extension HomePageViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         searchButtonClicked(textField)
+        
         return true
     }
 }
