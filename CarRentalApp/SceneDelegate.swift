@@ -35,10 +35,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func setMainRootViewController (windowScene: UIWindowScene){
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomePageViewController")
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: controller)
+//        window?.rootViewController = UINavigationController(rootViewController: controller)
+        window?.rootViewController = controller
         window?.makeKeyAndVisible()
     }
     

@@ -13,9 +13,14 @@
 		1003698F2AE3CF42009C01EE /* AccountPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003698E2AE3CF42009C01EE /* AccountPageViewController.swift */; };
 		1029F86E2AE3C1B60004A42F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1029F86D2AE3C1B60004A42F /* Realm */; };
 		1029F8702AE3C1B60004A42F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1029F86F2AE3C1B60004A42F /* RealmSwift */; };
+		102AD5AC2AED6AF300D400F2 /* TypeVehicleHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102AD5AB2AED6AF300D400F2 /* TypeVehicleHeaderReusableView.swift */; };
+		102AD5AF2AED847C00D400F2 /* TypeVehicleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102AD5AE2AED847C00D400F2 /* TypeVehicleHeaderCell.swift */; };
+		102AD5B12AED86E200D400F2 /* TypeVehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102AD5B02AED86E200D400F2 /* TypeVehicles.swift */; };
+		102AD5B32AED877D00D400F2 /* TypeVehiclesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102AD5B22AED877D00D400F2 /* TypeVehiclesGenerator.swift */; };
 		104503552AE83C1000E42505 /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104503542AE83C1000E42505 /* Vehicles.swift */; };
 		104503572AE850C600E42505 /* TypeVehicleCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104503562AE850C600E42505 /* TypeVehicleCollCell.swift */; };
 		104503592AE8573800E42505 /* VehicleListCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104503582AE8573800E42505 /* VehicleListCollCell.swift */; };
+		105D11352AEC074500F35299 /* VehicleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105D11342AEC074500F35299 /* VehicleGenerator.swift */; };
 		10E7523C2AEB08EC00B3B398 /* VehicleListCollCellXIB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E7523A2AEB08EC00B3B398 /* VehicleListCollCellXIB.swift */; };
 		10E7523D2AEB08EC00B3B398 /* VehicleListCollCellXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E7523B2AEB08EC00B3B398 /* VehicleListCollCellXIB.xib */; };
 		FE9D309C2AE3A6040004F029 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D309B2AE3A6040004F029 /* AppDelegate.swift */; };
@@ -31,9 +36,14 @@
 		100369892AE3CA3E009C01EE /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		1003698B2AE3CA52009C01EE /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		1003698E2AE3CF42009C01EE /* AccountPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageViewController.swift; sourceTree = "<group>"; };
+		102AD5AB2AED6AF300D400F2 /* TypeVehicleHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeVehicleHeaderReusableView.swift; sourceTree = "<group>"; };
+		102AD5AE2AED847C00D400F2 /* TypeVehicleHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeVehicleHeaderCell.swift; sourceTree = "<group>"; };
+		102AD5B02AED86E200D400F2 /* TypeVehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeVehicles.swift; sourceTree = "<group>"; };
+		102AD5B22AED877D00D400F2 /* TypeVehiclesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeVehiclesGenerator.swift; sourceTree = "<group>"; };
 		104503542AE83C1000E42505 /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
 		104503562AE850C600E42505 /* TypeVehicleCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeVehicleCollCell.swift; sourceTree = "<group>"; };
 		104503582AE8573800E42505 /* VehicleListCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListCollCell.swift; sourceTree = "<group>"; };
+		105D11342AEC074500F35299 /* VehicleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleGenerator.swift; sourceTree = "<group>"; };
 		10E7523A2AEB08EC00B3B398 /* VehicleListCollCellXIB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListCollCellXIB.swift; sourceTree = "<group>"; };
 		10E7523B2AEB08EC00B3B398 /* VehicleListCollCellXIB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleListCollCellXIB.xib; sourceTree = "<group>"; };
 		FE9D30982AE3A6040004F029 /* CarRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +81,9 @@
 			isa = PBXGroup;
 			children = (
 				104503542AE83C1000E42505 /* Vehicles.swift */,
+				105D11342AEC074500F35299 /* VehicleGenerator.swift */,
+				102AD5B02AED86E200D400F2 /* TypeVehicles.swift */,
+				102AD5B22AED877D00D400F2 /* TypeVehiclesGenerator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -78,10 +91,9 @@
 		1029F8722AE3C1D00004A42F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				104503562AE850C600E42505 /* TypeVehicleCollCell.swift */,
-				104503582AE8573800E42505 /* VehicleListCollCell.swift */,
-				10E7523A2AEB08EC00B3B398 /* VehicleListCollCellXIB.swift */,
-				10E7523B2AEB08EC00B3B398 /* VehicleListCollCellXIB.xib */,
+				102AD5AD2AED7EA600D400F2 /* kohne */,
+				102AD5AB2AED6AF300D400F2 /* TypeVehicleHeaderReusableView.swift */,
+				102AD5AE2AED847C00D400F2 /* TypeVehicleHeaderCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +131,17 @@
 				100369872AE3CA2E009C01EE /* SearchPageViewController.swift */,
 			);
 			path = "Search Page Controller";
+			sourceTree = "<group>";
+		};
+		102AD5AD2AED7EA600D400F2 /* kohne */ = {
+			isa = PBXGroup;
+			children = (
+				104503562AE850C600E42505 /* TypeVehicleCollCell.swift */,
+				104503582AE8573800E42505 /* VehicleListCollCell.swift */,
+				10E7523A2AEB08EC00B3B398 /* VehicleListCollCellXIB.swift */,
+				10E7523B2AEB08EC00B3B398 /* VehicleListCollCellXIB.xib */,
+			);
+			path = kohne;
 			sourceTree = "<group>";
 		};
 		FE9D308F2AE3A6040004F029 = {
@@ -235,15 +258,20 @@
 			files = (
 				1003698F2AE3CF42009C01EE /* AccountPageViewController.swift in Sources */,
 				FE9D309C2AE3A6040004F029 /* AppDelegate.swift in Sources */,
+				102AD5B32AED877D00D400F2 /* TypeVehiclesGenerator.swift in Sources */,
 				FE9D30A62AE3A6040004F029 /* CarRentalApp.xcdatamodeld in Sources */,
+				102AD5AF2AED847C00D400F2 /* TypeVehicleHeaderCell.swift in Sources */,
 				FE9D309E2AE3A6040004F029 /* SceneDelegate.swift in Sources */,
+				105D11352AEC074500F35299 /* VehicleGenerator.swift in Sources */,
 				104503592AE8573800E42505 /* VehicleListCollCell.swift in Sources */,
 				104503552AE83C1000E42505 /* Vehicles.swift in Sources */,
+				102AD5AC2AED6AF300D400F2 /* TypeVehicleHeaderReusableView.swift in Sources */,
 				1003698C2AE3CA52009C01EE /* LoginPageViewController.swift in Sources */,
 				1003698A2AE3CA3E009C01EE /* HomePageViewController.swift in Sources */,
 				10E7523C2AEB08EC00B3B398 /* VehicleListCollCellXIB.swift in Sources */,
 				100369882AE3CA2E009C01EE /* SearchPageViewController.swift in Sources */,
 				104503572AE850C600E42505 /* TypeVehicleCollCell.swift in Sources */,
+				102AD5B12AED86E200D400F2 /* TypeVehicles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
