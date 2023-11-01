@@ -36,13 +36,13 @@ class TypeVehiclesGenerator {
             }
         }
         
-        var types = [TypeVehicles(typeName: "Standard",
+        var types = [TypeVehicles(typeName: .standart,
                                   carImage: "car_1",
                                   carCount: countStandart ),
-                     TypeVehicles(typeName: "Prestige",
+                     TypeVehicles(typeName: .prestige,
                                   carImage: "car_2",
                                   carCount: countPrestige),
-                     TypeVehicles(typeName: "SUV",
+                     TypeVehicles(typeName: .suv,
                                   carImage: "car_3",
                                   carCount: countSUV) ]
         

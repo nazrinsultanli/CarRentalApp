@@ -10,11 +10,11 @@ import RealmSwift
 
 
 class TypeVehicles: Object {
-    @Persisted var typeName: String
+    @Persisted var typeName: CetegoryCar?
     @Persisted var carImage: String
     @Persisted var carCount: Int
     
-    convenience init(typeName: String, carImage: String, carCount: Int) {
+    convenience init(typeName: CetegoryCar, carImage: String, carCount: Int) {
         self.init()
         self.typeName = typeName
         self.carImage = carImage

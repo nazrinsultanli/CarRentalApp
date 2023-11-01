@@ -9,34 +9,29 @@ import UIKit
 import RealmSwift
 
 class SearchPageViewController: UIViewController {
-    
-    var carData = VehicleGenerator().carData
-
-    
     @IBOutlet weak var collectionViewVehicles: UICollectionView!
     @IBOutlet weak var searchButton: UITextField!
-
+    
+    var carData = VehicleGenerator().carData
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewVehicles.dataSource = self
         collectionViewVehicles.delegate = self
         collectionViewVehicles.register(UINib(nibName: "\(VehicleListCollCellXIB.self)", bundle: nil), forCellWithReuseIdentifier: "VehicleListCollCellXIB")
-    
         
-        navigationController?.navigationBar.barTintColor = UIColor.white
-           tabBarController?.tabBar.barTintColor = UIColor.white
-           view.backgroundColor = UIColor.systemGray6
+
+//        view.backgroundColor = UIColor.systemGray6
     
     }
   
     @IBAction func searchButtonClicked(_ sender: Any) {
+        
     }
-    
 }
 
-extension SearchPageViewController: UICollectionViewDelegate,UICollectionViewDataSource{
+extension SearchPageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         return carData.count
     }
     
@@ -44,7 +39,6 @@ extension SearchPageViewController: UICollectionViewDelegate,UICollectionViewDat
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(VehicleListCollCellXIB.self)", for: indexPath) as! VehicleListCollCellXIB
         
-       
         cell.setVehicleListCollCell(liter: carData[indexPath.item].brandName,
                                     cost: String(carData[indexPath.item].rentCost),
                                     engine: carData[indexPath.item].motor,
@@ -58,8 +52,6 @@ extension SearchPageViewController: UICollectionViewDelegate,UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width * 0.855, height: 355)
     }
-    
-
 }
 
 //extension SearchPageViewController: UITextFieldDelegate {

@@ -14,21 +14,24 @@ class VehicleGenerator {
                             rentCost: 100,
                             motor: "engine",
                             speed: "1212",
-                            imageName: "car_1"),
+                            imageName: "car_1",
+                            categoryType: .standart),
                    Vehicles(brandName: "Mercedes",
-                                           modelName: "GLE",
-                                           rentCost: 250,
-                                           motor: "engine",
-                                           speed: "1212",
-                                           imageName: "car_2"),
+                            modelName: "GLE",
+                            rentCost: 250,
+                            motor: "engine",
+                            speed: "1212",
+                            imageName: "car_2",
+                            categoryType: .prestige),
                    Vehicles(brandName: "Porche",
-                                           modelName: "panamera",
-                                           rentCost: 450,
-                                           motor: "engine",
-                                           speed: "1212",
-                                           imageName: "car_3"),
+                            modelName: "panamera",
+                            rentCost: 450,
+                            motor: "engine",
+                            speed: "1212",
+                            imageName: "car_3",
+                            categoryType: .suv),
     ]
-
+    
     
     func saveItems() {
         do{
@@ -43,12 +46,12 @@ class VehicleGenerator {
             print(error.localizedDescription)
         }
     }
-        
-        func fetch(){
-            let data = myRealm.objects(Vehicles.self)
-            carData.removeAll()
-            carData.append(contentsOf: data)
-            //vehiclesListCollectionView.reloadData()
-        }
+    
+    func fetch(){
+        let data = myRealm.objects(Vehicles.self)
+        carData.removeAll()
+        carData.append(contentsOf: data)
+        //vehiclesListCollectionView.reloadData()
+    }
     
 }

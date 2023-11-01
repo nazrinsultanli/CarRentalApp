@@ -13,11 +13,9 @@ class TypeVehicleHeaderReusableView: UICollectionReusableView {
     
     let typesOfVehicles = TypeVehiclesGenerator().types
     
-    var selectedIndexforHome: ((Int) -> Void)?
+    var selectedCategoryforHome: ((CetegoryCar) -> Void)?
     
-    var selectedIndexPath: IndexPath?
-    
-    
+    var selectedIndexPath: IndexPath = .init(item: 0, section: 0)
 }
 
 extension TypeVehicleHeaderReusableView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -27,7 +25,14 @@ extension TypeVehicleHeaderReusableView: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionViewm.dequeueReusableCell(withReuseIdentifier: "TypeVehicleHeaderCell", for: indexPath) as! TypeVehicleHeaderCell
-        cell.setCell(type: typesOfVehicles[indexPath.item].typeName, count: typesOfVehicles[indexPath.item].carCount, carImage: typesOfVehicles[indexPath.item].carImage)
+        if indexPath == selectedIndexPath {
+            cell.selectedCell()
+        } else {
+            cell.unSelectedCell()
+        }
+        cell.setCell(type: typesOfVehicles[indexPath.item].typeName?.rawValue ?? "",
+                     count: typesOfVehicles[indexPath.item].carCount,
+                     carImage: typesOfVehicles[indexPath.item].carImage)
         return cell
     }
    
@@ -35,25 +40,20 @@ extension TypeVehicleHeaderReusableView: UICollectionViewDelegate, UICollectionV
         .init(width: 150, height: collectionViewm.frame.height)
     }
     
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndexforHome?(tag)
+        selectedCategoryforHome?(typesOfVehicles[indexPath.item].typeName!)//--------------------------
+        selectedIndexPath = indexPath
         
-            let cell = collectionViewm.cellForItem(at: indexPath) as? TypeVehicleHeaderCell
-
-                    // Reset background color of all cells to clear
-            if let selectedIndexPath = selectedIndexPath,
-                           let previousCell = collectionViewm.cellForItem(at: selectedIndexPath) as? TypeVehicleHeaderCell {
-                previousCell.selectedCell()
-                        }
-        cell?.unSelectedCell()
-            selectedIndexPath = indexPath
-
+//        let cell = collectionViewm.cellForItem(at: indexPath) as? TypeVehicleHeaderCell
+//        
+//        // Reset background color of all cells to clear
+//        if let selectedIndexPath = selectedIndexPath,
+//           let previousCell = collectionViewm.cellForItem(at: selectedIndexPath) as? TypeVehicleHeaderCell {
+//            previousCell.selectedCell()
+//        }
+//        cell?.unSelectedCell()
+//        selectedIndexPath = indexPath
+        
         collectionViewm.reloadData()
-
     }
-    
 }
-

@@ -15,8 +15,9 @@ class Vehicles: Object{
     @Persisted var motor: String
     @Persisted var speed: String
     @Persisted var imageName: String
+    @Persisted var categoryType: CetegoryCar?
     
-    convenience init(brandName: String, modelName: String, rentCost: Int, motor: String, speed: String, imageName: String) {
+    convenience init(brandName: String, modelName: String, rentCost: Int, motor: String, speed: String, imageName: String, categoryType: CetegoryCar?) {
         self.init()
         self.brandName = brandName
         self.modelName = modelName
@@ -24,7 +25,13 @@ class Vehicles: Object{
         self.motor = motor
         self.speed = speed
         self.imageName = imageName
+        self.categoryType = categoryType
     }
 }
 
 
+enum CetegoryCar: String, CaseIterable, PersistableEnum {
+    case standart = "Standart"
+    case prestige = "Prestige"
+    case suv =  "SUV"
+}

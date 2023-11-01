@@ -17,18 +17,17 @@ class TypeVehicleHeaderCell: UICollectionViewCell {
     
     func setCell(type:String,count:Int, carImage:String){
         self.type.text = type
-        self.backColor.backgroundColor = UIColor.white
         self.count.text = String(count)
         self.carImage.image = UIImage(named: carImage)
     }
     
-    func selectedCell(){
-        self.type.textColor = UIColor.white
-        self.backColor.backgroundColor = UIColor.blue
-        self.count.textColor = UIColor.white
+    func selectedCell() {
+        type.textColor = .white
+        backColor.backgroundColor = .blue
+        count.textColor = .white
     }
     
-    func unSelectedCell(){
+    func unSelectedCell() {
         self.type.textColor = UIColor.black
         self.backColor.backgroundColor = UIColor.white
         self.count.textColor = UIColor.gray
